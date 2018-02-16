@@ -1,0 +1,68 @@
+<div style="padding-top: 50px;">
+    <%= render 'layouts/navigationWithoutLogin' %>
+</div>
+
+<header>
+    <div class="container">
+        <div class="row " style="color: white;margin-bottom: 20px">
+            <strong><h1 class="text-center" style="font-size: 50px; margin-bottom: 20px;" ><%= @company.companyname %></h1></strong>
+            <div class="pull-left">
+                <span class="btn btn-warning img-thumbnail" id="no_decoration" style="font-size: 12px; margin-right: 20px;margin-top: 25px"><%= link_to "Rated: " + @company.rating.round(2).to_s,likes_company_path(@company) %></span>
+            </div>
+            <div class="pull-left rating">
+                <%= link_to like_company_path(@company, like: 5), method: :post do %>
+                    &#9734;
+                <% end %>
+                
+               <%= link_to like_company_path(@company, like: 4), method: :post do %>
+                    &#9734;
+                <% end %>
+                
+              <%= link_to like_company_path(@company, like: 3), method: :post do %>
+                    &#9734;
+                <% end %>
+             
+               <%= link_to like_company_path(@company, like: 2), method: :post do %>
+                    &#9734; 
+                <% end %>
+               
+                <%= link_to like_company_path(@company, like: 1), method: :post do %>
+                    &#9734;
+                <% end %>
+             
+            </div>
+            
+            <% if logged_in? and (current_user == @company.user) %>
+                <%= link_to "Edit this info",edit_company_path(@company), class: "btn btn-danger pull-right" %>
+             <% end %>
+        </div>
+        
+        <div class="row" style="margin-top: 30px">
+            <div class="col-sm-6">
+                <%= image_tag(@company.picture.url,size: "400x400",class: "gravatar img-responsive img-circle") if @company.picture? %>
+            </div>
+            
+            <div class="col-sm-1"></div>
+           
+            <div class="col-sm-5" style="margin-top: 5px; margin-bottom:5px">
+                <div class="row well" style="background-color: rgba(245, 245, 245, 0);"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Arriving on <%= @company.date %></div>
+                <div class="row well" style="background-color: rgba(245, 245, 245, 0);"><i class="glyphicon glyphicon-th"></i>&nbsp;&nbsp;Package: <%= @company.package %> lakhs per annum</div>
+                <% if @company.branches.any? %><div class="row well" style="background-color: rgba(245, 245, 245, 0);"><i class="glyphicon glyphicon-road"></i>&nbsp;&nbsp;For <%= render @company.branches %> Branch</div> <% end %>
+                <div class="row well" style="background-color: rgba(245, 245, 245, 0);"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;&nbsp;Location: <%= @company.location %></div>
+            </div>
+    
+             
+        </div>
+        
+        <div class="row" style="margin-top: 1px">
+            <div class="col-sm-12">
+                <em><h3 style="word-wrap: break-word; color: #ffffff"><%= simple_format(@company.description) %></h3></em>
+            </div>
+        </div>
+        
+    </div>
+    
+    <hr>
+    
+        
+</header>

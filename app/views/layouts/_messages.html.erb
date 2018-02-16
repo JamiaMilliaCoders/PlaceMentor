@@ -1,0 +1,19 @@
+<% flash.each do |message_type,message| %>
+    <% if message_type === "success" %>
+        <div id="note" style="background: #DFF0D8">
+             <%= message %><a id="close">[close]</a>
+        </div>
+    <% else %>
+        <div id="note" style="background: #F2DEDE">
+             <%= message %><a id="close">[close]</a>
+        </div>
+    <% end %>
+<% end %>
+
+<script>
+   close = document.getElementById("close");
+   close.addEventListener('click', function() {
+     note = document.getElementById("note");
+     note.style.display = 'none';
+   }, false);
+</script>

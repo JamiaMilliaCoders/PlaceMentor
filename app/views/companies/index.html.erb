@@ -1,0 +1,92 @@
+<div style="padding-top: 50px;">
+    <%= render 'layouts/navigationWithoutLogin' %>
+</div>
+
+<div style="background-image: url('/assets/header.jpg'">
+    
+<div style="padding-top: 50px;"></div>
+
+<% @companies.each do |company| %>
+
+<div class="container well">
+	<div class="row">
+		<div class="row"> 
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        
+                            <%= link_to image_tag(company.picture.url,size: "250x250", class: "gravatar img-responsive img-box img-thumbnail"),company_path(company) if company.picture? %>
+                        
+                    </div> 
+                    <div class="col-xs-12 col-sm-9 col-md-9">
+                        <div class="pull-right" style="margin-right: 7px; color: #FF4500">
+                            <% case company.rating.round(2)  %>
+                                <% when 1...2 %>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                <% when 2...3 %>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                <% when 3...4 %>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                <% when 4...5 %>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star-empty" style="font-size: 20px;"></i>
+                                <% when 5 %>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                    <i class="glyphicon glyphicon-star" style="font-size: 20px;"></i>
+                                <% else %>
+                                    Not Rated Yet
+                            <% end %>
+                        </div>
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="row-picture">
+                                    <%= link_to gravatar_for(company.user, size: 100), user_path(company.user)%>
+                                </div>
+                                <div class="row-content">
+                                    <div class="list-group-item-heading">
+                                        <%= link_to company.companyname,company_path(company) %>
+                                    </div>
+                                    <small>
+                                        <i class="glyphicon glyphicon-calendar"></i> Arriving on <%= company.date %> 
+                                        <br>
+                                        <span class="explore"><i class="glyphicon glyphicon-th"></i> <a style="text-decoration: none">Package: <%= company.package %> lpa </a></span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="word-wrap: break-word; color: #55423E" class="well"><%= company.description %></p>
+                        <% if company.branches.any? %><strong>For <%= render company.branches %> Branch</strong><% end %>
+                        <div align="right" style="margin-right: 5px"><em>Brought to you by <strong><%= link_to company.user.username,user_path(company.user) %></strong></em></div>
+                        
+                    </div> 
+        </div>
+        
+    </div>
+</div>
+
+<% end %>
+
+<div class="pagniation-wrapper"> 
+  <%= will_paginate %> 
+</div>
+
+<div style="padding-top: 50px;"></div>
+
+</div>
+        
