@@ -1,4 +1,4 @@
-![logo](https://github.com/thegenuinegourav/PlaceMentor/blob/master/PlaceMentor.jpg)  
+![logo](https://github.com/JamiaMilliaCoders/PlaceMentor/blob/master/placementor.jpg)  
   
 # PlaceMentor                                  
 :mortar_board: PlaceMentor helps you to get information regarding Oncampus companies visit!  
